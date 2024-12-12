@@ -1418,6 +1418,7 @@ int paho_mqtt_publish(MQTTClient *client, enum QoS qos, const char *topic, const
     message.retained = 0;
     message.payload = (void *)msg_str;
     message.payloadlen = rt_strlen(message.payload);
+    message.id = getNextPacketId(client);
 
     if (client->isblocking && client->pub_sem)
     {
